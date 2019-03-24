@@ -1,7 +1,7 @@
 from selenium import webdriver
 from player import PlayerInfo
 from team import Team
-import parser
+import parser, database
 import os
 
 def main():
@@ -17,6 +17,7 @@ def main():
 
     driver = webdriver.Chrome(executable_path = DRIVER_BIN, options=options)
     driver.get(url)
+    driver.quit()   #important to prevent memory leaks
 
     blue_team_raw = driver.find_element_by_class_name("team-100")
     red_team_raw = driver.find_element_by_class_name("team-200")
@@ -28,7 +29,7 @@ def main():
 
     parser.getPlayerStats(stats_raw, blue_team, red_team)
 
-    print(blue_team)
+    database.addTeamInfo(blue_team, red_team)
 
 if __name__ == "__main__":
     main()

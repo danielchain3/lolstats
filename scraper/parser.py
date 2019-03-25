@@ -2,12 +2,20 @@ from selenium import webdriver
 from player import PlayerInfo
 from team import Team
 
-#removes leading and trailing space from text
 def formatHTML(raw_html):
+    '''removes leading and trailing space from text'''
     return raw_html.get_attribute("textContent").strip()
 
-#takes team information and generates a team object
+def getMatchInfo(match_info, match_id, formatText = formatHTML):
+    match_stats = list(map(formatText, match_info.find_elements_by_tag_name("span")))
+    match_duration = "00:" + match_stats[1]
+    date = match_stats[2].split("/")
+    date = date[2] + "-" + date[1] + "-" + date[0]  #ordering depends on region
+    
+    return {"match_duration": match_duration, "date": date, "match_id" : match_id}
+
 def getTeamInfo(team_info, formatText = formatHTML):
+    '''takes team information and generates a team object'''
     #Put player names in array
     player_names = team_info.find_elements_by_class_name("champion-nameplate-name")
     player_names = list(map(formatText, player_names))
@@ -45,8 +53,8 @@ def getTeamInfo(team_info, formatText = formatHTML):
 
     return team 
 
-#adds player stats to the team object
 def getPlayerStats(raw_html, blue_team, red_team, formatText = formatHTML):
+    '''adds player stats to the team object'''
     def getChampName(element):
         return element.find_element_by_xpath(".//div/div/div").get_attribute("data-rg-id")
 

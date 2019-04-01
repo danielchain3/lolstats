@@ -5,8 +5,8 @@ import parser, database
 import os
 
 def main():
-    #url = "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1071787?gameHash=1d6a8f1e229aff57&tab=stats"
-    url = "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1071778?gameHash=59ed416c4088b7e2&tab=stats"
+    url = "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1071787?gameHash=1d6a8f1e229aff57&tab=stats"
+    #url = "https://matchhistory.euw.leagueoflegends.com/en/#match-details/ESPORTSTMNT01/1071778?gameHash=59ed416c4088b7e2&tab=stats"
 
     # read html
     PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
@@ -34,6 +34,7 @@ def main():
 
         database.addTeamInfo(blue_team, red_team)
         database.addTeamStats(blue_team, red_team, match_info)
+        database.addPlayerStats(blue_team, red_team, match_info)
     
     finally:
         driver.quit()   #end process

@@ -119,3 +119,4 @@ def getPlayerStats(raw_html, blue_team, red_team, formatText = formatHTML):
 
                 blue_team.players[playerIndex].addInformation(stat_type, blue_player_stats)
                 red_team.players[playerIndex].addInformation(stat_type, red_player_stats)
+

@@ -2,7 +2,7 @@
 
 # dependencies
 env/
-/node_modules
+node_modules/
 /.pnp
 .pnp.js
 
@@ -10,7 +10,7 @@ env/
 /coverage
 
 #cached files
-__pycache__
+__pycache__/
 
 # production
 /build

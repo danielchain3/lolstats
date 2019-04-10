@@ -20,7 +20,6 @@ source env/bin/activate
 
 Now, install all the dependencies as specified in requirements.txt
 ```
-pip install -r requirements.txt
+make init
 ```
-
 
